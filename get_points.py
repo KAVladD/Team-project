@@ -37,6 +37,6 @@ def get_points(path, grap=True):
 
     cap.release()
     cv2.destroyAllWindows()
-    return result_points
+    return result_points, frame.shape[0], frame.shape[1]
 
-a = get_points('video3.MOV', grap = True )
+a = get_points('C:\\python_folders\\mediapipe\\video3.MOV', grap = True )

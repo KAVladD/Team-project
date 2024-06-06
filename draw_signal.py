@@ -1,19 +1,25 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-def draw_signal (result_points, task, grap):
+def draw_signal (result_points, task, grap, height, width):
     frame = []
     znach = []
+
+        
     if task == 1:
         for i in range(result_points.shape[1]):
             if result_points[4,i] == 0:
                 pass
             else:
                 sum_sqr = (result_points[4,i]['x'] - result_points[8,i]['x']) ** 2 
-                + (result_points[4,i]['y'] - result_points[8,i]['y']) ** 2
-                + (result_points[4,i]['z'] - result_points[8,i]['z']) ** 2 
+                + ((width/height)**2)*(result_points[4,i]['y'] - result_points[8,i]['y']) ** 2
+                + (result_points[4,i]['z'] - result_points[8,i]['z']) ** 2
+
+                distance_norm = np.sqrt((result_points[1,i]['x'] - result_points[0,i]['x']) ** 2 
+                + ((width/height)**2)*(result_points[1,i]['y'] - result_points[0,i]['y']) ** 2
+                + (result_points[1,i]['z'] - result_points[0,i]['z']) ** 2)
                 distance = np.sqrt(sum_sqr)
-                znach.append(distance)
+                znach.append(distance/distance_norm)
                 frame.append(i)
         
     if task == 2:
@@ -22,10 +28,14 @@ def draw_signal (result_points, task, grap):
                 pass
             else:
                 sum_sqr = (result_points[0,i]['x'] - result_points[12,i]['x']) ** 2 
-                + (result_points[0,i]['y'] - result_points[12,i]['y']) ** 2
-                + (result_points[0,i]['z'] - result_points[12,i]['z']) ** 2 
+                + ((width/height)**2)*(result_points[0,i]['y'] - result_points[12,i]['y']) ** 2
+                + (result_points[0,i]['z'] - result_points[12,i]['z']) ** 2
+
+                distance_norm = np.sqrt((result_points[1,i]['x'] - result_points[0,i]['x']) ** 2 
+                + ((width/height)**2)*(result_points[1,i]['y'] - result_points[0,i]['y']) ** 2
+                + (result_points[1,i]['z'] - result_points[0,i]['z']) ** 2)
                 distance = np.sqrt(sum_sqr)
-                znach.append(distance)
+                znach.append(distance/distance_norm)
                 frame.append(i)
 
     if grap == True:
