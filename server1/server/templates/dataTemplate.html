@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Результаты измерений</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>Время прихода на сервер</th>
+        <!-- <th>Данные</th> -->
+        <th>Среднее</th>
+        <th>СКО</th>
+        <th>Частота</th>
+        <th>График</th>
+        <th>Диагноз</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in data %}
+    <tr>
+        <td><span>{{ item.time }}</span></td>
+        <!-- <td><span>{{ item.numbers }}</span></td> -->
+        <td><span>{{ item.mean }}</span></td>
+        <td><span>{{ item.std }}</span></td>
+        <td><span>{{ item.freq }}</span></td>
+        <td><span><img src="{{item.plot}}"></span></td>
+        <td><span>{{ item.pred }}</span></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>
